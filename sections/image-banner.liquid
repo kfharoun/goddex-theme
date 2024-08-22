@@ -6,9 +6,9 @@
   .banner-image-with-mask {
     height: 70%;
     width: 100%;
-    object-fit: fill; /* Ensures the image covers the entire area */
-    -webkit-mask-size: fill; /* Ensures the mask scales properly */
-    mask-size: fill;
+    object-fit: cover; /* Ensures the image covers the entire area */
+    -webkit-mask-size: cover; /* Ensures the mask scales properly */
+    mask-size: cover;
   }
 }
 @media screen and (min-width: 750px) {
@@ -23,13 +23,30 @@
 {%- endif -%}
 
 <style>
+
+  .banner__media {
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner__media-image {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  transform: scale(1.1); /* Slight zoom to keep the center of the image in focus */
+  transform-origin: center; /* Center the zoom effect */
+  object-position: center top; /* Adjusts the image position vertically */
+}
+
   .banner-image-with-mask {
     width: 100%;
-    height: 85%;
-    object-fit: cover;
+    height: 59vh; /* Set the height based on your mask requirement */
+    object-fit: cover; /* Ensures the image covers the container without distorting */
+    object-position: center; /* Centers the image within the mask */
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-position: center;
     -webkit-mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI4ODciIHZpZXdCb3g9IjAgMCAxNDQwIDg4NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDY3NC44NjJMMjYuNCA2NTYuNzE5QzUyLjggNjM4LjU3NSAxMDYuOCA2MDIuMjg3IDE1OS42IDYzOC41NzVDMjEzLjYgNjc0Ljg2MiAyNjYuNCA3ODMuNzI1IDMyMC40IDgzOC4xNTZDMzczLjIgODkyLjU4NyA0MjcuMiA4OTIuNTg3IDQ4MCA4ODAuNDkxQzUzMi44IDg2OC4zOTUgNTg2LjggODQ0LjIwNCA2MzkuNiA4MDcuOTE2QzY5My42IDc3MS42MjkgNzQ2LjQgNzIzLjI0NiA4MDAuNCA3MzUuMzQxQzg1My4yIDc0Ny40MzcgOTA3LjIgODIwLjAxMiA5NjAgODA3LjkxNkMxMDEyLjggNzk1LjgyIDEwNjYuOCA2OTkuMDU0IDExMTkuNiA3MDUuMTAyQzExNzMuNiA3MTEuMTUgMTIyNi40IDgyMC4wMTIgMTI4MC40IDg1Ni4yOTlDMTMzMy4yIDg5Mi41ODcgMTM4Ny4yIDg1Ni4yOTkgMTQxMy42IDgzOC4xNTZMMTQ0MCA4MjAuMDEyVjU2NkgxNDEzLjZDMTM4Ny4yIDU2NiAxMzMzLjIgNTY2IDEyODAuNCA1NjZDMTIyNi40IDU2NiAxMTczLjYgNTY2IDExMTkuNiA1NjZDMTY2LjggNTY2IDEwMTIuOCA1NjYgOTYwIDU2NkM5MDcuMiA1NjYgODUzLjIgNTY2IDgwMC40IDU2NkM3NDYuNCA1NjYgNjkzLjYgNTY2IDYzOS42IDU2NkM1ODYuOCA1NjYgNTMyLjggNTY2IDQ4MCA1NjZDNDI3LjIgNTY2IDM3My4yIDU2NiAzMjAuNCA1NjZDMTMzLjYgNTY2IDUyLjggNTY2IDI2LjQgNTY2SDBWNjc0Ljg2MloiIGZpbGw9IiMwMDk5RkYiLz4KPHJlY3QgeD0iMSIgd2lkdGg9IjE0MzkiIGhlaWdodD0iNTY5IiBmaWxsPSIjRDlEOUQ5Ii8+Cjwvc3ZnPgo=');
     mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI4ODciIHZpZXdCb3g9IjAgMCAxNDQwIDg4NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDY3NC44NjJMMjYuNCA2NTYuNzE5QzUyLjggNjM4LjU3NSAxMDYuOCA2MDIuMjg3IDE1OS42IDYzOC41NzVDMjEzLjYgNjc0Ljg2MiAyNjYuNCA3ODMuNzI1IDMyMC40IDgzOC4xNTZDMzczLjIgODkyLjU4NyA0MjcuMiA4OTIuNTg3IDQ4MCA4ODAuNDkxQzUzMi44IDg2OC4zOTUgNTg2LjggODQ0LjIwNCA2MzkuNiA4MDcuOTE2QzY5My42IDc3MS42MjkgNzQ2LjQgNzIzLjI0NiA4MDAuNCA3MzUuMzQxQzg1My4yIDc0Ny40MzcgOTA3LjIgODIwLjAxMiA5NjAgODA3LjkxNkMxMDEyLjggNzk1LjgyIDEwNjYuOCA2OTkuMDU0IDExMTkuNiA3MDUuMTAyQzExNzMuNiA3MTEuMTUgMTIyNi40IDgyMC4wMTIgMTI4MC40IDg1Ni4yOTlDMTMzMy4yIDg5Mi41ODcgMTM4Ny4yIDg1Ni4yOTkgMTQxMy42IDgzOC4xNTZMMTQ0MCA4MjAuMDEyVjU2NkgxNDEzLjZDMTM4Ny4yIDU2NiAxMzMzLjIgNTY2IDEyODAuNCA1NjZDMTIyNi40IDU2NiAxMTczLjYgNTY2IDExMTkuNiA1NjZDMTY2LjggNTY2IDEwMTIuOCA1NjYgOTYwIDU2NkM5MDcuMiA1NjYgODUzLjIgNTY2IDgwMC40IDU2NkM3NDYuNCA1NjYgNjkzLjYgNTY2IDYzOS42IDU2NkM1ODYuOCA1NjYgNTMyLjggNTY2IDQ4MCA1NjZDNDI3LjIgNTY2IDM3My4yIDU2NiAzMjAuNCA1NjZDMTMzLjYgNTY2IDUyLjggNTY2IDI2LjQgNTY2SDBWNjc0Ljg2MloiIGZpbGw9IiMwMDk5RkYiLz4KPHJlY3QgeD0iMSIgd2lkdGg9IjE0MzkiIGhlaWdodD0iNTY5IiBmaWxsPSIjRDlEOUQ5Ii8+Cjwvc3ZnPgo=');
-    mask-size: cover;
     mask-position: bottom;
   }
 
@@ -53,14 +70,16 @@
       {%- liquid
         assign image_url = section.settings.image | image_url: width: 3840
         assign image_alt = section.settings.image.alt | default: shop.name | escape
+        assign image_width = section.settings.image.width | default: '3840'
+        assign image_height = section.settings.image.height | divided_by: section.settings.image.aspect_ratio | default: 'auto'
       -%}
       
       <img src="{{ image_url }}"
            alt="{{ image_alt }}"
            class="banner__media-image"
            sizes="100vw"
-           width="{{ section.settings.image.width }}"
-           height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+           width="{{ image_width }}"
+           height="{{ image_height }}"
            fetchpriority="high">
     </div>
   {%- else -%}
