@@ -2,16 +2,30 @@
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
-    @media screen and (max-width: 749px) {
-      #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before,
-      #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
-    }
+@media screen and (max-width: 749px) {
+  .banner {
+    height: 200vh; /* or adjust to your desired height */
+  }
 
+  .banner-image-with-mask {
+    height: 100%; /* Ensure the image scales properly */
+  }
+
+  /* Adjust the mask size to fit the increased height */
+  .banner-image-with-mask {
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  /* Ensure the content is centered vertically if needed */
+  .banner__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; /* Adjust padding as needed */
+  }
+}
     @media screen and (min-width: 750px) {
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before {
@@ -23,11 +37,6 @@
   {%- endstyle -%}
 {%- endif -%}
 
-{%- style -%}
-  #Banner-{{ section.id }}::after {
-    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-  }
-{%- endstyle -%}
 
 {%- liquid
   assign full_width = '100vw'
@@ -51,70 +60,58 @@
   endif
 -%}
 
+<style>
+  .banner-image-with-mask {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    -webkit-mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI4ODciIHZpZXdCb3g9IjAgMCAxNDQwIDg4NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDY3NC44NjJMMjYuNCA2NTYuNzE5QzUyLjggNjM4LjU3NSAxMDYuOCA2MDIuMjg3IDE1OS42IDYzOC41NzVDMjEzLjYgNjc0Ljg2MiAyNjYuNCA3ODMuNzI1IDMyMC40IDgzOC4xNTZDMzczLjIgODkyLjU4NyA0MjcuMiA4OTIuNTg3IDQ4MCA4ODAuNDkxQzUzMi44IDg2OC4zOTUgNTg2LjggODQ0LjIwNCA2MzkuNiA4MDcuOTE2QzY5My42IDc3MS42MjkgNzQ2LjQgNzIzLjI0NiA4MDAuNCA3MzUuMzQxQzg1My4yIDc0Ny40MzcgOTA3LjIgODIwLjAxMiA5NjAgODA3LjkxNkMxMDEyLjggNzk1LjgyIDEwNjYuOCA2OTkuMDU0IDExMTkuNiA3MDUuMTAyQzExNzMuNiA3MTEuMTUgMTIyNi40IDgyMC4wMTIgMTI4MC40IDg1Ni4yOTlDMTMzMy4yIDg5Mi41ODcgMTM4Ny4yIDg1Ni4yOTkgMTQxMy42IDgzOC4xNTZMMTQ0MCA4MjAuMDEyVjU2NkgxNDEzLjZDMTM4Ny4yIDU2NiAxMzMzLjIgNTY2IDEyODAuNCA1NjZDMTIyNi40IDU2NiAxMTczLjYgNTY2IDExMTkuNiA1NjZDMTY2LjggNTY2IDEwMTIuOCA1NjYgOTYwIDU2NkM5MDcuMiA1NjYgODUzLjIgNTY2IDgwMC40IDU2NkM3NDYuNCA1NjYgNjkzLjYgNTY2IDYzOS42IDU2NkM1ODYuOCA1NjYgNTMyLjggNTY2IDQ4MCA1NjZDNDI3LjIgNTY2IDM3My4yIDU2NiAzMjAuNCA1NjZDMTMzLjYgNTY2IDUyLjggNTY2IDI2LjQgNTY2SDBWNjc0Ljg2MloiIGZpbGw9IiMwMDk5RkYiLz4KPHJlY3QgeD0iMSIgd2lkdGg9IjE0MzkiIGhlaWdodD0iNTY5IiBmaWxsPSIjRDlEOUQ5Ii8+Cjwvc3ZnPgo=');
+    mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI4ODciIHZpZXdCb3g9IjAgMCAxNDQwIDg4NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDY3NC44NjJMMjYuNCA2NTYuNzE5QzUyLjggNjM4LjU3NSAxMDYuOCA2MDIuMjg3IDE1OS42IDYzOC41NzVDMjEzLjYgNjc0Ljg2MiAyNjYuNCA3ODMuNzI1IDMyMC40IDgzOC4xNTZDMzczLjIgODkyLjU4NyA0MjcuMiA4OTIuNTg3IDQ4MCA4ODAuNDkxQzUzMi44IDg2OC4zOTUgNTg2LjggODQ0LjIwNCA2MzkuNiA4MDcuOTE2QzY5My42IDc3MS42MjkgNzQ2LjQgNzIzLjI0NiA4MDAuNCA3MzUuMzQxQzg1My4yIDc0Ny40MzcgOTA3LjIgODIwLjAxMiA5NjAgODA3LjkxNkMxMDEyLjggNzk1LjgyIDEwNjYuOCA2OTkuMDU0IDExMTkuNiA3MDUuMTAyQzExNzMuNiA3MTEuMTUgMTIyNi40IDgyMC4wMTIgMTI4MC40IDg1Ni4yOTlDMTMzMy4yIDg5Mi41ODcgMTM4Ny4yIDg1Ni4yOTkgMTQxMy42IDgzOC4xNTZMMTQ0MCA4MjAuMDEyVjU2NkgxNDEzLjZDMTM4Ny4yIDU2NiAxMzMzLjIgNTY2IDEyODAuNCA1NjZDMTIyNi40IDU2NiAxMTczLjYgNTY2IDExMTkuNiA1NjZDMTY2LjggNTY2IDEwMTIuOCA1NjYgOTYwIDU2NkM5MDcuMiA1NjYgODUzLjIgNTY2IDgwMC40IDU2NkM3NDYuNCA1NjYgNjkzLjYgNTY2IDYzOS42IDU2NkM1ODYuOCA1NjYgNTMyLjggNTY2IDQ4MCA1NjZDNDI3LjIgNTY2IDM3My4yIDU2NiAzMjAuNCA1NjZDMTMzLjYgNTY2IDUyLjggNTY2IDI2LjQgNTY2SDBWNjc0Ljg2MloiIGZpbGw9IiMwMDk5RkYiLz4KPHJlY3QgeD0iMSIgd2lkdGg9IjE0MzkiIGhlaWdodD0iNTY5IiBmaWxsPSIjRDlEOUQ5Ii8+Cjwvc3ZnPgo=');
+    mask-size: cover;
+    mask-position: bottom;
+  }
+</style>
+
 <div
   id="Banner-{{ section.id }}"
   class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if section.settings.image != blank -%}
-    <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- liquid
-        assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
-        if section.settings.image_2 != blank
-          assign image_class = 'banner__media-image-half'
-        endif
-        if section.settings.image_2 != blank and section.settings.stack_images_on_mobile
-          assign sizes = stacked_sizes
-        elsif section.settings.image_2 != blank
-          assign sizes = half_width
-        else
-          assign sizes = full_width
-        endif
-      -%}
+    <div class="banner__media banner-image-with-mask">
       {{
         section.settings.image
         | image_url: width: 3840
         | image_tag:
           width: section.settings.image.width,
-          height: image_height,
-          class: image_class,
-          sizes: sizes,
+          height: section.settings.image.width | divided_by: section.settings.image.aspect_ratio,
+          class: 'banner__media-image',
+          sizes: full_width,
           widths: widths,
           fetchpriority: fetch_priority
       }}
     </div>
   {%- elsif section.settings.image_2 == blank -%}
-    <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="banner__media banner-image-with-mask">
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
   {%- endif -%}
+
   {%- if section.settings.image_2 != blank -%}
-    <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- liquid
-        assign image_height_2 = section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio
-        if section.settings.image != blank
-          assign image_class_2 = 'banner__media-image-half'
-        endif
-        if section.settings.image != blank and section.settings.stack_images_on_mobile
-          assign sizes = stacked_sizes
-        elsif section.settings.image_2 != blank
-          assign sizes = half_width
-        else
-          assign sizes = full_width
-        endif
-      -%}
+    <div class="banner__media banner-image-with-mask">
       {{
         section.settings.image_2
         | image_url: width: 3840
         | image_tag:
           width: section.settings.image_2.width,
-          height: image_height_2,
-          class: image_class_2,
-          sizes: sizes,
+          height: section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio,
+          class: 'banner__media-image',
+          sizes: full_width,
           widths: widths,
           fetchpriority: fetch_priority
       }}
     </div>
   {%- endif -%}
+
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}

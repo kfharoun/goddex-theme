@@ -70,6 +70,43 @@
       padding-top: 0.5rem;
     }
   }
+  
+  /* styles to overlay header on banner */
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent; 
+    z-index: 10; /* Ensures it stays on top of the banner */
+  }
+
+  .header .header__icons .icon,
+  .header .list-menu__item--link {
+    color: white; 
+  }
+
+  .header .header__heading-logo-wrapper img {
+    max-width: 150px; /* Adjust logo size if necessary */
+  }
+
+  .section-header {
+    position: sticky; 
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-header {
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .header {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
 </style>
 
 {%- style -%}
