@@ -114,12 +114,19 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
-            <h2
+            <h1
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading }}
-            </h2>
+            </h1>
+          {%- when 'heading_2' -%}
+            <h1
+              class="banner__heading inline-richtext {{ block.settings.heading_size_2 }}"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.heading_2 }}
+            </h1>
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.text }}</p>
@@ -356,6 +363,47 @@
     }
   ],
   "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.image-banner.blocks.heading_2.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading_2",
+          "default": "Your Second Heading",
+          "label": "t:sections.image-banner.blocks.heading_2.settings.heading_2.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size_2",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
     {
       "type": "heading",
       "name": "t:sections.image-banner.blocks.heading.name",
