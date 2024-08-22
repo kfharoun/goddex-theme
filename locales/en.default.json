@@ -272,6 +272,171 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
+        "image-banner": {
+          "name": "Image Banner",
+          "settings": {
+            "image_height": {
+              "options__1": {
+                "label": "Adapt"
+              },
+              "options__2": {
+                "label": "Small"
+              },
+              "options__3": {
+                "label": "Medium"
+              },
+              "options__4": {
+                "label": "Large"
+              },
+              "label": "Image Height",
+              "info": "Adjust the height of the image."
+            },
+            "image_overlay_opacity": {
+              "label": "Image Overlay Opacity"
+            },
+            "desktop_content_position": {
+              "options__1": {
+                "label": "Top Left"
+              },
+              "options__2": {
+                "label": "Top Center"
+              },
+              "options__3": {
+                "label": "Top Right"
+              },
+              "options__4": {
+                "label": "Middle Left"
+              },
+              "options__5": {
+                "label": "Middle Center"
+              },
+              "options__6": {
+                "label": "Middle Right"
+              },
+              "options__7": {
+                "label": "Bottom Left"
+              },
+              "options__8": {
+                "label": "Bottom Center"
+              },
+              "options__9": {
+                "label": "Bottom Right"
+              },
+              "label": "Content Position"
+            },
+            "show_text_box": {
+              "label": "Show Text Box"
+            },
+            "desktop_content_alignment": {
+              "options__1": {
+                "label": "Left"
+              },
+              "options__2": {
+                "label": "Center"
+              },
+              "options__3": {
+                "label": "Right"
+              },
+              "label": "Content Alignment"
+            },
+            "color_scheme": {
+              "label": "Color Scheme"
+            },
+            "image_behavior": {
+              "options__1": {
+                "label": "None"
+              },
+              "options__2": {
+                "label": "Ambient"
+              },
+              "options__3": {
+                "label": "Fixed"
+              },
+              "options__4": {
+                "label": "Zoom In"
+              },
+              "label": "Image Behavior"
+            },
+            "mobile_content_alignment": {
+              "options__1": {
+                "label": "Left"
+              },
+              "options__2": {
+                "label": "Center"
+              },
+              "options__3": {
+                "label": "Right"
+              },
+              "label": "Mobile Content Alignment"
+            },
+            "stack_images_on_mobile": {
+              "label": "Stack Images on Mobile"
+            },
+            "show_text_below": {
+              "label": "Show Text Below"
+            }
+          },
+          "blocks": {
+            "heading": {
+              "name": "Heading",
+              "settings": {
+                "heading": {
+                  "label": "Heading Text"
+                },
+                "heading_size": {
+                  "label": "Heading Size"
+                }
+              }
+            },
+            "heading_2": {
+              "name": "Heading 2",
+              "settings": {
+                "heading_2": {
+                  "label": "Heading 2 Text"
+                },
+                "heading_size_2": {
+                  "label": "Heading Size 2"
+                }
+              }
+            },
+            "text": {
+              "name": "Text",
+              "settings": {
+                "text": {
+                  "label": "Text"
+                },
+                "text_style": {
+                  "label": "Text Style"
+                }
+              }
+            },
+            "buttons": {
+              "name": "Buttons",
+              "settings": {
+                "button_label_1": {
+                  "label": "Button Label 1",
+                  "info": "Text for the first button"
+                },
+                "button_link_1": {
+                  "label": "Button Link 1"
+                },
+                "button_style_secondary_1": {
+                  "label": "Secondary Button Style 1"
+                },
+                "button_label_2": {
+                  "label": "Button Label 2",
+                  "info": "Text for the second button"
+                },
+                "button_link_2": {
+                  "label": "Button Link 2"
+                },
+                "button_style_secondary_2": {
+                  "label": "Secondary Button Style 2"
+                }
+              }
+            }
+          }
+        },
 
     "header": {
       "announcement": "Announcement",

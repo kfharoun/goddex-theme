@@ -3,7 +3,6 @@
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
 @media screen and (max-width: 749px) {
-
   .banner-image-with-mask {
     height: 70%;
     width: 100%;
@@ -11,41 +10,17 @@
     -webkit-mask-size: fill; /* Ensures the mask scales properly */
     mask-size: fill;
   }
-
 }
-    @media screen and (min-width: 750px) {
-      #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
-    }
-  {%- endstyle -%}
+@media screen and (min-width: 750px) {
+  #Banner-{{ section.id }}::before,
+  #Banner-{{ section.id }} .banner__media::before {
+    padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+    content: '';
+    display: block;
+  }
+}
+{%- endstyle -%}
 {%- endif -%}
-
-
-{%- liquid
-  assign full_width = '100vw'
-  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
-
-  if section.settings.image_behavior == 'ambient'
-    assign half_width = '60vw'
-    assign full_width = '120vw'
-    assign stacked_sizes = '(min-width: 750px) 60vw, 120vw'
-    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
-  elsif section.settings.image_behavior == 'fixed' or section.settings.image_behavior == 'zoom-in'
-    assign half_width = '100vw'
-    assign stacked_sizes = '100vw'
-  else
-    assign half_width = '50vw'
-    assign stacked_sizes = '(min-width: 750px) 50vw, 100vw'
-  endif
-  assign fetch_priority = 'auto'
-  if section.index == 1
-    assign fetch_priority = 'high'
-  endif
--%}
 
 <style>
   .banner-image-with-mask {
@@ -71,41 +46,26 @@
 
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if section.settings.image != blank -%}
     <div class="banner__media banner-image-with-mask">
-      {{
-        section.settings.image
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image.width,
-          height: section.settings.image.width | divided_by: section.settings.image.aspect_ratio,
-          class: 'banner__media-image',
-          sizes: full_width,
-          widths: widths,
-          fetchpriority: fetch_priority
-      }}
+      {%- liquid
+        assign image_url = section.settings.image | image_url: width: 3840
+        assign image_alt = section.settings.image.alt | default: shop.name | escape
+      -%}
+      
+      <img src="{{ image_url }}"
+           alt="{{ image_alt }}"
+           class="banner__media-image"
+           sizes="100vw"
+           width="{{ section.settings.image.width }}"
+           height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+           fetchpriority="high">
     </div>
-  {%- elsif section.settings.image_2 == blank -%}
+  {%- else -%}
     <div class="banner__media banner-image-with-mask">
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-    </div>
-  {%- endif -%}
-
-  {%- if section.settings.image_2 != blank -%}
-    <div class="banner__media banner-image-with-mask">
-      {{
-        section.settings.image_2
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image_2.width,
-          height: section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio,
-          class: 'banner__media-image',
-          sizes: full_width,
-          widths: widths,
-          fetchpriority: fetch_priority
-      }}
     </div>
   {%- endif -%}
 
@@ -114,19 +74,19 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
-            <h1
+            <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading }}
-            </h1>
+            </h2>
           {%- when 'heading_2' -%}
-            <h1
+            <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size_2 }}"
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading_2 }}
-            </h1>
+            </h2>
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.text }}</p>
@@ -180,21 +140,6 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-banner.settings.image.label"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "t:sections.image-banner.settings.image_2.label"
-    },
-    {
-      "type": "range",
-      "id": "image_overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 10,
-      "unit": "%",
-      "label": "t:sections.image-banner.settings.image_overlay_opacity.label",
-      "default": 0
     },
     {
       "type": "select",
@@ -353,7 +298,7 @@
       "type": "checkbox",
       "id": "stack_images_on_mobile",
       "default": true,
-      "label": "t:sections.image-banner.settings.stack_images_on_mobile.label"
+      "label": "t:sections.image-banner.settings.stack_images      _on_mobile.label"
     },
     {
       "type": "checkbox",
@@ -363,47 +308,6 @@
     }
   ],
   "blocks": [
-    {
-      "type": "heading",
-      "name": "t:sections.image-banner.blocks.heading_2.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "heading_2",
-          "default": "Your Second Heading",
-          "label": "t:sections.image-banner.blocks.heading_2.settings.heading_2.label"
-        },
-        {
-          "type": "select",
-          "id": "heading_size_2",
-          "options": [
-            {
-              "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
-            },
-            {
-              "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
-            },
-            {
-              "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
-            },
-            {
-              "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
-            },
-            {
-              "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
-            }
-          ],
-          "default": "h1",
-          "label": "t:sections.all.heading_size.label"
-        }
-      ]
-    },
     {
       "type": "heading",
       "name": "t:sections.image-banner.blocks.heading.name",
@@ -442,6 +346,47 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "heading_2",
+      "name": "t:sections.image-banner.blocks.heading_2.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading_2",
+          "default": "Your default heading 2 text here",
+          "label": "t:sections.image-banner.blocks.heading_2.settings.heading_2.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size_2",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.image-banner.blocks.heading_2.settings.heading_size_2.label"
         }
       ]
     },
