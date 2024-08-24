@@ -60,6 +60,7 @@
   id="Banner-{{ section.id }}"
   class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
+
   {%- if section.settings.image != blank -%}
     <div class="banner__media banner-image-with-mask">
       {%- liquid
@@ -68,6 +69,7 @@
         assign image_width = section.settings.image.width | default: '3840'
         assign image_height = section.settings.image.height | divided_by: section.settings.image.aspect_ratio | default: 'auto'
       -%}
+
       
       <img src="{{ image_url }}"
            alt="{{ image_alt }}"
@@ -88,18 +90,9 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
-            <h2
-              class="banner__heading inline-richtext {{ block.settings.heading_size }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.heading }}
-            </h2>
-          {%- when 'heading_2' -%}
-            <h2
-              class="banner__heading inline-richtext {{ block.settings.heading_size_2 }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.heading_2 }}
+            <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
+              <span class="first-word">{{ block.settings.heading | split: ' ' | first }}</span><br>
+              <span class="second-word">{{ block.settings.heading | split: ' ' | last }}</span>
             </h2>
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
