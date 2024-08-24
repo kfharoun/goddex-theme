@@ -48,11 +48,22 @@
     %}
 
     {% style %}
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces&display=swap');
+    
     @font-face {
     font-family: 'GoddexFont';
      src: url('{{ "goddexfont.woff2" | asset_url }}') format('woff2');
     font-weight: normal;
     font-style: normal;
+    }
+
+    .fraunces {
+      font-family: "Fraunces", serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      font-variation-settings:
+        "SOFT" 0,
+        "WONK" 0;
     }
     {% endstyle %}
 
