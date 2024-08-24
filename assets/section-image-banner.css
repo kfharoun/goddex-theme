@@ -461,7 +461,7 @@
 /* mobile sizing */
 @media screen and (max-width: 500px) {
   .banner__heading {
-    font-size: 2.93em; /* Adjust font size for mobile */
+    font-size: 2.93em; 
   }
 
   .banner__heading .second-word {
@@ -469,23 +469,23 @@
   }
 
   .banner__media-image {
-    width: 100vw; /* Make sure the image takes up the full width of the viewport */
-    height: auto; /* Maintain the aspect ratio */
-    object-fit: cover; /* Ensures the image covers the container */
+    width: 100vw; 
+    height: auto; 
+    object-fit: cover; 
     position: relative;
     left: 50%; 
-    transform: translateX(-50%); /* Centers the image */
+    transform: translateX(-50%); 
   }
 }
 
 /* full screen desktop */
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 700px) {
   .banner__heading {
-    font-size: 5.55em;
-    width: 130%; 
-    transform: translateX(20%);
-    transform: translateY(-220%)
+    font-size: 5em;
+    width: 100vw; 
+    transform: translateX(10%);
+    transform: translateY(-250%);
   }
 
   .banner__heading .second-word {
