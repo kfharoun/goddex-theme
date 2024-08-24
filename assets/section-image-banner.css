@@ -455,13 +455,44 @@
 .banner__heading .second-word {
   display: block;
   width: 50%; 
-  margin-left: 11vw; /* Indentation */
-  margin-top: 1vh; /* Adjust the spacing between lines */
+  margin-left: 5.88vw; 
+  margin-top: 1vh; 
+}
+/* mobile sizing */
+@media screen and (max-width: 500px) {
+  .banner__heading {
+    font-size: 2.93em; /* Adjust font size for mobile */
+  }
+
+  .banner__heading .second-word {
+    margin-left: 10vw; 
+  }
+
+  .banner__media-image {
+    width: 100vw; /* Make sure the image takes up the full width of the viewport */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Ensures the image covers the container */
+    position: relative;
+    left: 50%; 
+    transform: translateX(-50%); /* Centers the image */
+  }
 }
 
-/* .banner__box .banner__heading + * {
-  margin-top: 1rem;
-} */
+/* full screen desktop */
+
+@media screen and (min-width: 950px) {
+  .banner__heading {
+    font-size: 5.55em;
+    width: 130%; 
+    transform: translateX(20%);
+    transform: translateY(-220%)
+  }
+
+  .banner__heading .second-word {
+    margin-left: 5.88vw;
+  }
+}
+
 
 .banner__buttons {
   display: inline-flex;
