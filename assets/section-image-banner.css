@@ -493,6 +493,26 @@
   .banner__box {
     max-width: 0rem;
   }
+  .banner__media-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover; /* Ensure the image covers the container */
+    object-position: center 30% !important; /* Position the image so the top is cut off */
+    margin: 0 auto; 
+  }
+
+  .banner-image-with-mask {
+    height: 80vh !important;
+  }
+
+  .banner {
+    margin-bottom: 10vh !important;
+  }
+
+  .banner__heading {
+    font-size: 10em !important;
+    transform: translateY(-60%) !important;
+  }
 }
 
 .banner__heading {
@@ -509,6 +529,19 @@
   text-align: center;
   color: #FFFFFF;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.banner__media {
+  display: flex;
+  justify-content: center; 
+}
+
+.banner__media-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensure the image covers the container */
+  object-position: center top; /* Position the image so the top is cut off */
+  margin: 0 auto; /* Center the image horizontally */
 }
 
 .banner__heading .first-word {
@@ -551,7 +584,7 @@
 
   .banner__media-image {
     width: auto !important;
-    height: 40vh !important;
+    height: 45vh !important;
     object-fit: fill !important;
     margin: 0 auto; 
   }
