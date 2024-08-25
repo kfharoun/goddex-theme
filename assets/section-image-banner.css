@@ -43,8 +43,8 @@
   margin-left: -100px;
   position: absolute;
   order: 1; 
-  left: 120px;
-  top: -70px; 
+  left: 195px;
+  top: -80px; 
   z-index: 2; 
   cursor: pointer !important;
   transition: all 0.3s ease; 
@@ -497,9 +497,10 @@
 
 .banner__heading {
   width: 100%; 
-  top: 50%;  
+  position: relative;
+  top: 20%;  
   left: 50%; 
-  left: calc(50% - 10px); 
+  left: calc(50% - 340px); 
   transform: translateX(10%);
   font-style: normal;
   font-weight: 400;
@@ -525,6 +526,7 @@
 @media screen and (max-width: 500px) {
   .banner__heading {
     font-size: 2.93em; 
+    order: 2
   }
 
   .banner__heading .second-word {
@@ -538,6 +540,11 @@
     position: relative;
     left: 50%; 
     transform: translateX(-50%); 
+  }
+
+  .banner__box {
+    margin: 0;
+    order: 1;
   }
 }
 
@@ -617,5 +624,9 @@
 .button.button--secondary {
   min-height: 35px;
   height: 35px !important;
-  border-radius: 10px !important; 
+}
+
+button.button--secondary {
+  min-height: 35px;
+  height: 35px !important;
 }
