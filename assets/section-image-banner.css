@@ -1,3 +1,10 @@
+
+
+/* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
+.banner__box.gradient {
+  transform: perspective(0);
+}
+
 .banner {
   display: flex;
   position: relative;
@@ -7,14 +14,72 @@
 }
 
 .banner__box {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  word-wrap: break-word;
+  z-index: 1;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  margin-bottom: 120px;
+  background-color: transparent;
+  position: relative;
 }
 
-/* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
-.banner__box.gradient {
-  transform: perspective(0);
+.banner__heading {
+  margin-bottom: 0;
 }
 
+.banner__buttons {
+  margin-top: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  word-break: break-word;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(100%);
+  -webkit-backdrop-filter: blur(10px);
+  margin-left: -100px;
+  position: absolute;
+  order: 1; 
+  left: 120px;
+  top: -70px; 
+  z-index: 2; 
+  cursor: pointer !important;
+  transition: all 0.3s ease; 
+}
+
+.banner__buttons:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.4); 
+  backdrop-filter: blur(20px); 
+  -webkit-backdrop-filter: blur(20px); 
+  border: 1px solid rgba(255, 255, 255, 0.5); 
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.banner__heading {
+  order: 2; 
+}
+
+
+
+@media only screen and (max-width: 749px) {
+    .banner--content-align-mobile-right .banner__box {
+        text-align: right;
+    }
+
+    .banner--content-align-mobile-left .banner__box {
+        text-align: left;
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .banner--content-align-right .banner__box {
+        text-align: right;
+    }
+}
 @media only screen and (max-width: 749px) {
   .banner--content-align-mobile-right .banner__box {
     text-align: right;
@@ -37,7 +102,7 @@
   .banner--content-align-left.banner--desktop-transparent .banner__box,
   .banner--content-align-right.banner--desktop-transparent .banner__box,
   .banner--medium.banner--desktop-transparent .banner__box {
-    max-width: 68rem;
+    max-width: 62rem;
   }
 }
 
@@ -354,12 +419,9 @@
 }
 
 @media screen and (min-width: 750px) {
-  .banner__box {
-    padding: 4rem 3.5rem;
-  }
+
 
   .banner--desktop-transparent .banner__box {
-    padding: 4rem 0;
     background: transparent;
     max-width: 89rem;
     border: none;
@@ -388,7 +450,7 @@
   content: '';
   position: absolute;
   top: 0;
-  background: #000000;
+  background: transparent;
   opacity: 0;
   z-index: 1;
   width: 100%;
@@ -429,7 +491,7 @@
 
 @media screen and (min-width: 1400px) {
   .banner__box {
-    max-width: 90rem;
+    max-width: 0rem;
   }
 }
 
@@ -445,6 +507,7 @@
   line-height: .4;
   text-align: center;
   color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .banner__heading .first-word {
@@ -480,7 +543,7 @@
 
 /* full screen desktop */
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 760px) {
   .banner__heading {
     font-size: 5em;
     width: 100vw; 
@@ -494,13 +557,9 @@
 }
 
 
-.banner__buttons {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  max-width: 45rem;
-  word-break: break-word;
-}
+
+
+
 
 @media screen and (max-width: 749px) {
   .banner--content-align-mobile-right .banner__buttons--multiple {
@@ -525,8 +584,10 @@
 }
 
 .banner__box > * + .banner__buttons {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
+
+
 
 @media screen and (max-width: 749px) {
   .banner:not(.slideshow) .rte a,
@@ -542,4 +603,19 @@
   .banner--desktop-transparent .rte a:hover {
     color: currentColor;
   }
+}
+
+.banner__buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  word-break: break-word;
+  background: rgba(255, 255, 255, 0.2); 
+  backdrop-filter: blur(100%); 
+  -webkit-backdrop-filter: blur(10px); 
+}
+
+.button.button--secondary {
+  min-height: 35px;
+  height: 35px !important;
+  border-radius: 10px !important; 
 }
