@@ -499,15 +499,15 @@
 /* mobile sizing */
 @media screen and (max-width: 499px) {
   .banner__heading {
-    font-size: 3.7em;
+    font-size: 17.4vw;
     width: 150%; 
     margin-left: 70%;
-    transform: translateY(-130%);
+    transform: translateY(-160px);
     position: static;
     order: 1;
   }
   .first-word {
-    margin-bottom: -85px;
+    margin-bottom: -22%;
   }
   .banner__heading .second-word {
     margin-left: 5.88vw;
@@ -518,8 +518,8 @@
   }
 
   .banner__buttons {
-    left: 65%;
-    top: -15px;
+    left: 60%;
+    top: 50px;
     background: rgba(255, 255, 255, 0.4); 
     backdrop-filter: blur(20px); 
     -webkit-backdrop-filter: blur(20px); 
@@ -531,9 +531,8 @@
   .banner__media-image {
     width: auto !important;
     height: 50vh !important;
-    object-fit: cover !important;
-    object-position: left !important;
-    margin: 0 auto; 
+    object-fit: fill !important;
+    object-position: center !important; 
   }
 
   .button.button--secondary {
@@ -665,12 +664,12 @@
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1000px) {
   .banner__box {
     max-width: 0rem;
   }
   .banner__media-image {
-    width: 100% !important;
+    max-width: 1600px !important;
     height: 100% !important;
     object-fit: cover;
     object-position: center 30% !important; 
@@ -686,8 +685,10 @@
   }
 
   .banner__heading {
-    font-size: 10em !important;
-    transform: translateY(-40%) !important;
+    font-size: 8.5em !important;
+    width: 300% !important;
+    left: 20px !important;
+    top: -18vh !important;
   }
 
   .banner__buttons {
@@ -733,4 +734,6 @@
     padding: 0.5rem 1rem !important;
   }
 }
+
+
 
