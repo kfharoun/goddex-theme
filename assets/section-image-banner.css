@@ -530,8 +530,9 @@
 
   .banner__media-image {
     width: auto !important;
-    height: 45vh !important;
-    object-fit: fill !important;
+    height: 50vh !important;
+    object-fit: cover !important;
+    object-position: left !important;
     margin: 0 auto; 
   }
 
@@ -543,10 +544,8 @@
     padding: 0.5rem .5rem !important;
   }
   .banner-image-with-mask {
-    height: 45vh !important;
+    height: 50vh !important;
   }
-
-
   
 }
 
@@ -734,3 +733,4 @@
     padding: 0.5rem 1rem !important;
   }
 }
+
