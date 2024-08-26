@@ -497,7 +497,7 @@
   margin-top: 1vh; 
 }
 /* mobile sizing */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 499px) {
   .banner__heading {
     font-size: 3.7em;
     width: 150%; 
@@ -542,6 +542,11 @@
     font-size: 1.9rem !important; 
     padding: 0.5rem .5rem !important;
   }
+  .banner-image-with-mask {
+    height: 45vh !important;
+  }
+
+
   
 }
 
@@ -563,12 +568,12 @@
 
 /* full screen desktop */
 
-@media screen and (min-width: 500px) and (max-width: 890px) {
+@media screen and (min-width: 500px) and (max-width: 749px) {
   .banner__heading {
     font-size: 10vw;
     min-width: 120vw; 
     margin-left: 30%;
-    transform: translateY(-40%);
+    transform: translateY(30px);
   }
 
   .first-word {
@@ -576,6 +581,16 @@
   }
   .banner__heading .second-word {
     margin-left: 5.88vw;
+  }
+
+  .banner-image-with-mask {
+    height: 50vh !important;
+  }
+
+  .banner__buttons {
+    left: 290px;
+    top: 260px;
+    transform: translate(-50%, -50%) !important;
   }
 }
 
@@ -624,6 +639,32 @@
   }
 }
 
+
+@media  screen and (min-width: 750px) and (max-width: 1023px) {
+  .banner__heading {
+    font-size: 10vw;
+    min-width: 120vw; 
+    margin-left: 30%;
+    transform: translateY(-180px);
+  }
+
+  .first-word {
+    margin-bottom: -14%;
+  }
+  .banner__heading .second-word {
+    margin-left: 5.88vw;
+  }
+
+  .banner-image-with-mask {
+    height: 70vh !important;
+  }
+
+  .banner__buttons {
+    left: 250px;
+    top: 65px;
+    transform: translate(-50%, -50%) !important;
+  }
+}
 
 @media screen and (min-width: 1400px) {
   .banner__box {
