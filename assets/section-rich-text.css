@@ -92,3 +92,19 @@
 .rich-text__blocks.right .rich-text__buttons {
   justify-content: flex-end;
 }
+
+.rich-text__text {
+  max-width: 370px;
+  margin: 0 auto;
+  margin-top: 13px;
+  font-size: 20px !important;
+}
+
+.rich-text__caption {
+  margin-top: 10px;
+}
+
+.rich-text.content-container {
+  margin-bottom: 180px;
+  margin-top: 180px;
+}
