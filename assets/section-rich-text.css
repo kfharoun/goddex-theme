@@ -66,12 +66,15 @@
   width: 100%;
   max-width: 45rem;
   word-break: break-word;
-  border: none;
 }
 
 .rich-text--button {
   border-radius: 10px !important;
-  border: none !important;
+  color: rgb(var(--color-foreground));
+  background-color: transparent !important;
+  font: 'fraunces'!important;
+  font-size: 1.8rem !important;
+  letter-spacing: 3px;
 }
 .rich-text__buttons--multiple > * {
   flex-grow: 1;
