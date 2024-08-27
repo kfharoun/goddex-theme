@@ -1,0 +1,43 @@
+{{ 'checkers.css' | asset_url | stylesheet_tag }}
+
+<div class="checkerboard-banner">
+    <svg width="1445" height="108" viewBox="0 0 1445 108" xmlns="http://www.w3.org/2000/svg">
+        <!-- First Row -->
+        <rect width="38" height="54" x="0" y="0" fill="{{ section.settings.color_1 | default: '#C6CF8E' }}" fill-opacity="0.35" />
+        <rect width="38" height="54" x="38" y="0" fill="{{ section.settings.color_2 | default: '#FFFFFF' }}" />
+        <rect width="38" height="54" x="76" y="0" fill="{{ section.settings.color_1 | default: '#C6CF8E' }}" fill-opacity="0.35" />
+        <rect width="38" height="54" x="114" y="0" fill="{{ section.settings.color_2 | default: '#FFFFFF' }}" />
+            
+    
+        <!-- Second Row -->
+        <rect width="38" height="54" x="0" y="54" fill="{{ section.settings.color_2 | default: '#FFFFFF' }}" />
+        <rect width="38" height="54" x="38" y="54" fill="{{ section.settings.color_1 | default: '#C6CF8E' }}" fill-opacity="0.35" />
+        <rect width="38" height="54" x="76" y="54" fill="{{ section.settings.color_2 | default: '#FFFFFF' }}" />
+        <rect width="38" height="54" x="114" y="54" fill="{{ section.settings.color_1 | default: '#C6CF8E' }}" fill-opacity="0.35" />
+    </svg>
+</div>
+
+{% schema %}
+{
+  "name": "Checkerboard Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "color_1",
+      "label": "First Checker Color",
+      "default": "#C6CF8E"
+    },
+    {
+      "type": "color",
+      "id": "color_2",
+      "label": "Second Checker Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Checkerboard"
+    }
+  ]
+}
+{% endschema %}
