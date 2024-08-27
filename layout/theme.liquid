@@ -57,13 +57,18 @@
     font-style: normal;
     }
 
-    .fraunces {
-      font-family: "Fraunces", serif;
-      font-optical-sizing: auto;
+    @font-face {
+      font-family: 'fraunces';
+      src: url('{{ "fraunces.ttf" | asset_url }}') format('ttf');
+      font-weight: normal;
       font-style: normal;
-      font-variation-settings:
-        "SOFT" 0,
-        "WONK" 0;
+    }
+
+    @font-face {
+      font-family: 'frauncesitalics';
+      src: url('{{ "fraunces-italic.ttf" | asset_url }}') format('ttf');
+      font-weight: normal;
+      font-style: normal;
     }
     {% endstyle %}
 

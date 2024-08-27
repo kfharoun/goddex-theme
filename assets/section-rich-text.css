@@ -66,8 +66,13 @@
   width: 100%;
   max-width: 45rem;
   word-break: break-word;
+  border: none;
 }
 
+.rich-text--button {
+  border-radius: 10px !important;
+  border: none !important;
+}
 .rich-text__buttons--multiple > * {
   flex-grow: 1;
   min-width: 22rem;
